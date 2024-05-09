@@ -1,0 +1,897 @@
+@echo off
+Title Fixuna Word Color Editer
+color 0A
+setlocal enabledelayedexpansion
+cls
+call :setESC
+call :SetESCcodes
+goto CheckInstall
+
+:SetESCcodes
+set "colorReset=%ESC%[0m"
+set "colorBorder0=%ESC%[102;97m"
+set "colorBorder1=%ESC%[102;95m"
+set "colorBorder2=%ESC%[107;36m"
+set "colorBorder3=%ESC%[101;35m"
+set "colorBorder4=%ESC%[40;92m"
+set "colorBorder5=%ESC%[105;93m"
+
+:CheckInstall
+echo.
+echo.
+echo %ESC%%colorBorder0%---------------------  Check Installation of Fixuna^'s Word Color Editor..  ---------------------%colorReset%
+echo.
+CD "%USERPROFILE%\DESKTOP\"
+echo Program is in this directory:        %CD% 
+echo User Profile is:        %USERPROFILE%
+echo.
+pause
+echo.
+echo Check if Folder exists..
+echo.
+pause
+goto Check1
+
+:Check1
+if exist "%USERPROFILE%\DESKTOP\FixunaExe1\FolderColorOutput" ( 
+	echo Folder exists && goto Main
+) else (
+ echo Folder not created && goto CreateFolder1
+)
+
+:CreateFolder1
+echo.
+echo %CD%
+echo Press ENTER to create Folder..
+echo.
+pause >nul
+CD "%USERPROFILE%\DESKTOP"
+MD "%USERPROFILE%\DESKTOP\FixunaExe1"
+MD "%USERPROFILE%\DESKTOP\FixunaExe1\FolderColorOutput"
+echo.
+echo Installation has been completed..
+echo Folder and Output Text File has been made..
+echo.
+echo Press ENTER to Continue to use Fixuna's Word Color Editer..
+echo.
+pause 
+goto Main
+
+:Main
+color 0F
+cls
+echo.
+echo.
+echo What is your Name user^?
+set /p UserName=Enter Name:
+pause
+cls
+echo.
+echo.
+echo ^*%ESC%%colorBorder0%===================================================================================================================================%colorReset%^*
+echo.
+echo.
+echo.
+echo                                                             ^<O %ESC%[45;33mHello %UserName%...%colorReset% O^>
+echo.
+echo.
+echo                                               ^<O %ESC%[105;93mWelcome To Fixuna's Word Color Editor%colorReset% O^>
+echo.
+echo.
+echo ^*%ESC%%colorBorder0%===================================================================================================================================%colorReset%^*
+echo.
+echo.
+echo Press S^) to start the Color Menu
+echo Press E^) to exit the Program
+set /p "Answer1=Enter your choice: "
+if /i "%Answer1%" == "" goto Main
+if /i %Answer1% == S goto Start
+if /i %Answer1% == E goto Exit 
+goto Main
+
+:Start
+cls
+color 0F
+echo.
+echo.
+echo.
+echo %ESC%%colorBorder1%=======================================================================================================================================%colorReset%
+echo.
+echo.
+echo.
+echo                                     %ESC%[101;93mWelcome to my program to use ANSI ESCAPE CODES for your Batch Script.%colorReset%
+echo.
+echo.
+echo                              %ESC%[40;97mENTER your chosen Word or Words and look for the background and foreground color you like.%colorReset%
+echo                                      %ESC%[40;97mYou can redirect the code so you can use it in your own Batch Script.%colorReset%
+echo.
+echo.
+echo                                     %ESC%[40;93mI hope this program will help you to create beautiful Batch Scripts.%colorReset%
+echo.
+echo.
+echo %ESC%%colorBorder1%=======================================================================================================================================%colorReset%
+pause
+goto Menu1
+
+:Menu1
+cls
+color 0F
+echo.
+echo.
+echo %ESC%%colorBorder2%=======================================================================================================================================%colorReset%
+echo.
+echo.
+echo                                        %ESC%[40;97mEnter the word you want to color...%colorReset%
+echo.
+echo.
+echo                      %ESC%[40;96m--------------------------------------------------------------------------%colorReset%
+echo.
+echo.
+set /p UserInput1=Enter:
+echo You word^(s^) is^/are.. %UserInput1%
+echo.
+echo.
+goto Menu2
+
+:Menu2
+echo %ESC%%colorBorder2%=======================================================================================================================================%colorReset%
+echo.
+echo.
+echo                                        %ESC%[40;97mDo you want to continue or change your Word...%colorReset%
+echo.
+echo                      %ESC%[40;96m--------------------------------------------------------------------------%colorReset%
+echo.
+echo.
+set /p "ContinueWord=Do you want to continue with this Word^? ENTER ^(Yes/No^): "
+if /i "%ContinueWord%" == "" goto Menu2
+if /i %ContinueWord% == No goto Menu1
+if /i %ContinueWord% == Yes goto Menu3
+goto Menu2
+
+:Menu3
+cls
+color 0F
+echo.
+echo.
+echo.
+echo %ESC%%colorBorder3%=======================================================================================================================================%colorReset%
+echo %ESC%%colorBorder4%---------------------------------------------------------------------------------------------------------------------------------------%colorReset%
+echo.
+echo.
+echo                           %ESC%[107;30mPress the number you want to choose for your background and foreground color..%ESC%[0m
+echo.
+echo.
+echo %ESC%%colorBorder4%---------------------------------------------------------------------------------------------------------------------------------------%colorReset%
+echo %ESC%%colorBorder3%=======================================================================================================================================%colorReset%
+echo.
+echo                                    %ESC%[107;35mPress ENTER to see all the Color Combinations..%ESC%[0m
+echo.
+echo %ESC%%colorBorder3%=======================================================================================================================================%colorReset%
+echo.
+echo.
+pause
+goto ColorMenu1
+
+:ColorMenu1
+cls
+echo Color Menu:
+echo 0 %ESC%[41;30mBlack text on Red background%ESC%[0m
+echo 1 %ESC%[42;30mBlack text on Green background%ESC%[0m
+echo 2 %ESC%[43;30mBlack text on Yellow background%ESC%[0m
+echo 3 %ESC%[44;30mBlack text on Blue background%ESC%[0m
+echo 4 %ESC%[45;30mBlack text on Magenta background%ESC%[0m
+echo 5 %ESC%[46;30mBlack text on Cyan background%ESC%[0m
+echo 6 %ESC%[47;30mBlack text on White background%ESC%[0m
+echo 7 %ESC%[100;30mBlack text on Grey background%ESC%[0m
+echo 8 %ESC%[101;30mBlack text on Light Red background%ESC%[0m
+echo 9 %ESC%[102;30mBlack text on Light Green background%ESC%[0m
+echo 10 %ESC%[103;30mBlack text on Light Yellow background%ESC%[0m
+echo 11 %ESC%[104;30mBlack text on Light Blue background%ESC%[0m
+echo 12 %ESC%[105;30mBlack text on Light Magenta background%ESC%[0m
+echo 13 %ESC%[106;30mBlack text on Light Cyan background%ESC%[0m
+echo 14 %ESC%[107;30mBlack text on Bright White background%ESC%[0m
+echo 15 %ESC%[40;37mWhite text on Black background%ESC%[0m
+echo 16 %ESC%[41;37mWhite text on Red background%ESC%[0m
+echo 17 %ESC%[42;37mWhite text on Green background%ESC%[0m
+echo 18 %ESC%[43;37mWhite text on Yellow background%ESC%[0m
+echo 19 %ESC%[44;37mWhite text on Blue background%ESC%[0m
+echo 20 %ESC%[45;37mWhite text on Magenta background%ESC%[0m
+echo 21 %ESC%[46;37mWhite text on Cyan background%ESC%[0m
+echo 22 %ESC%[100;37mWhite text on Grey background%ESC%[0m
+echo 23 %ESC%[101;37mWhite text on Light Red background%ESC%[0m
+echo 24 %ESC%[102;37mWhite text on Light Green background%ESC%[0m
+echo 25 %ESC%[103;37mWhite text on Light Yellow background%ESC%[0m
+echo 26 %ESC%[104;37mWhite text on Light Blue background%ESC%[0m
+echo 27 %ESC%[105;37mWhite text on Light Magenta background%ESC%[0m
+echo 28 %ESC%[106;37mWhite text on Light Cyan background%ESC%[0m
+echo 29 %ESC%[107;37mWhite text on Bright White background%ESC%[0m
+echo.
+echo %ESC%%colorBorder5%---------------------------------------------------------------------------------------------------------------------------------------%colorReset%
+echo Press B to go back in the color menu..
+echo Press F to go forward in the color Menu..
+echo Press C to choose your color..
+set /p UserInput=Do you want to back or forward in the color menu:
+if /i "%UserInput%" == "" goto ColorMenu1
+if /i %UserInput% == B goto Message1
+if /i %UserInput% == F goto ColorMenu2
+if /i %UserInput% == C goto ChooseColor
+goto ColorMenu1
+
+:ColorMenu2
+cls
+echo 30 %ESC%[40;33mYellow text on Black background%ESC%[0m
+echo 31 %ESC%[41;33mYellow text on Red background%ESC%[0m
+echo 32 %ESC%[42;33mYellow text on Green background%ESC%[0m
+echo 33 %ESC%[44;33mYellow text on Blue background%ESC%[0m
+echo 34 %ESC%[45;33mYellow text on Magenta background%ESC%[0m
+echo 35 %ESC%[46;33mYellow text on Cyan background%ESC%[0m
+echo 36 %ESC%[47;33mYellow text on White background%ESC%[0m
+echo 37 %ESC%[100;33mYellow text on Grey background%ESC%[0m
+echo 38 %ESC%[101;33mYellow text on Light Red background%ESC%[0m
+echo 39 %ESC%[102;33mYellow text on Light Green background%ESC%[0m
+echo 40 %ESC%[103;33mYellow text on Light Yellow background%ESC%[0m
+echo 41 %ESC%[104;33mYellow text on Light Blue background%ESC%[0m
+echo 42 %ESC%[105;33mYellow text on Light Magenta background%ESC%[0m
+echo 43 %ESC%[106;33mYellow text on Light Cyan background%ESC%[0m
+echo 44 %ESC%[107;33mYellow text on Bright White background%ESC%[0m
+echo 45 %ESC%[40;32mGreen text on Black background%ESC%[0m
+echo 46 %ESC%[41;32mGreen text on Red background%ESC%[0m
+echo 47 %ESC%[43;32mGreen text on Yellow background%ESC%[0m
+echo 48 %ESC%[44;32mGreen text on Blue background%ESC%[0m
+echo 49 %ESC%[45;32mGreen text on Magenta background%ESC%[0m
+echo 50 %ESC%[46;32mGreen text on Cyan background%ESC%[0m
+echo 51 %ESC%[47;32mGreen text on White background%ESC%[0m
+echo 52 %ESC%[100;32mGreen text on Grey background%ESC%[0m
+echo 53 %ESC%[101;32mGreen text on Light Red background%ESC%[0m
+echo 54 %ESC%[102;32mGreen text on Light Green background%ESC%[0m
+echo 55 %ESC%[103;32mGreen text on Light Yellow background%ESC%[0m
+echo 56 %ESC%[104;32mGreen text on Light Blue background%ESC%[0m
+echo 57 %ESC%[105;32mGreen text on Light Magenta background%ESC%[0m
+echo 58 %ESC%[106;32mGreen text on Light Cyan background%ESC%[0m
+echo 59 %ESC%[107;32mGreen text on Bright White background%ESC%[0m
+echo.
+echo %ESC%%colorBorder5%---------------------------------------------------------------------------------------------------------------------------------------%colorReset%
+echo Press B to go back in the color menu..
+echo Press F to go forward in the color Menu..
+echo Press C to choose your color..
+set /p UserInput=Do you want to back or forward in the color menu:
+if /i "%UserInput%" == "" goto ColorMenu2
+if /i %UserInput% == B goto ColorMenu1
+if /i %UserInput% == F goto ColorMenu3
+if /i %UserInput% == C goto ChooseColor
+goto ColorMenu2
+
+:ColorMenu3
+cls
+echo 60 %ESC%[40;36mCyan text on Black background%ESC%[0m
+echo 61 %ESC%[41;36mCyan text on Red background%ESC%[0m
+echo 62 %ESC%[42;36mCyan text on Green background%ESC%[0m
+echo 63 %ESC%[43;36mCyan text on Yellow background%ESC%[0m
+echo 64 %ESC%[44;36mCyan text on Blue background%ESC%[0m
+echo 65 %ESC%[45;36mCyan text on Magenta background%ESC%[0m
+echo 66 %ESC%[47;36mCyan text on White background%ESC%[0m
+echo 67 %ESC%[100;36mCyan text on Grey background%ESC%[0m
+echo 68 %ESC%[101;36mCyan text on Light Red background%ESC%[0m
+echo 69 %ESC%[102;36mCyan text on Light Green background%ESC%[0m
+echo 70 %ESC%[103;36mCyan text on Light Yellow background%ESC%[0m
+echo 71 %ESC%[104;36mCyan text on Light Blue background%ESC%[0m
+echo 72 %ESC%[105;36mCyan text on Light Magenta background%ESC%[0m
+echo 73 %ESC%[106;36mCyan text on Light Cyan background%ESC%[0m
+echo 74 %ESC%[107;36mCyan text on Bright White background%ESC%[0m
+echo 75 %ESC%[40;34mBlue text on Black background%ESC%[0m
+echo 76 %ESC%[41;34mBlue text on Red background%ESC%[0m
+echo 77 %ESC%[42;34mBlue text on Green background%ESC%[0m 
+echo 78 %ESC%[43;34mBlue text on Yellow background%ESC%[0m
+echo 79 %ESC%[45;34mBlue text on Magenta background%ESC%[0m
+echo 80 %ESC%[46;34mBlue text on Cyan background%ESC%[0m
+echo 81 %ESC%[47;34mBlue text on White background%ESC%[0m
+echo 82 %ESC%[100;34mBlue text on Grey background%ESC%[0m
+echo 83 %ESC%[101;34mBlue text on Light Red background%ESC%[0m
+echo 84 %ESC%[102;34mBlue text on Light Green background%ESC%[0m
+echo 85 %ESC%[103;34mBlue text on Light Yellow background%ESC%[0m
+echo 86 %ESC%[104;34mBlue text on Light Blue background%ESC%[0m
+echo 87 %ESC%[105;34mBlue text on Light Magenta background%ESC%[0m
+echo 88 %ESC%[106;34mBlue text on Light Cyan background%ESC%[0m
+echo 89 %ESC%[107;34mBlue text on Bright White background%ESC%[0m
+echo.
+echo %ESC%%colorBorder5%---------------------------------------------------------------------------------------------------------------------------------------%colorReset%
+echo Press B to go back in the color menu..
+echo Press F to go forward in the color Menu..
+echo Press C to choose your color..
+set /p UserInput=Do you want to back or forward in the color menu:
+if /i "%UserInput%" == "" goto ColorMenu3
+if /i %UserInput% == B goto ColorMenu2
+if /i %UserInput% == F goto ColorMenu4
+if /i %UserInput% == C goto ChooseColor
+goto ColorMenu3
+
+:ColorMenu4
+cls
+echo 90 %ESC%[40;35mMagenta text on Black background%ESC%[0m
+echo 91 %ESC%[41;35mMagenta text on Red background%ESC%[0m 
+echo 92 %ESC%[42;35mMagenta text on Green background%ESC%[0m 
+echo 93 %ESC%[43;35mMagenta text on Yellow background%ESC%[0m
+echo 94 %ESC%[44;35mMagenta text on Blue background%ESC%[0m 
+echo 95 %ESC%[46;35mMagenta text on Cyan background%ESC%[0m
+echo 96 %ESC%[47;35mMagenta text on White background%ESC%[0m
+echo 97 %ESC%[100;35mMagenta text on Grey background%ESC%[0m
+echo 98 %ESC%[101;35mMagenta text on Light Red background%ESC%[0m 
+echo 99 %ESC%[102;35mMagenta text on Light Green background%ESC%[0m 
+echo 100 %ESC%[103;35mMagenta text on Light Yellow background%ESC%[0m
+echo 101 %ESC%[104;35mMagenta text on Light Blue background%ESC%[0m 
+echo 102 %ESC%[105;35mMagenta text on Light Magenta background%ESC%[0m
+echo 103 %ESC%[106;35mMagenta text on Light Cyan background%ESC%[0m
+echo 104 %ESC%[107;35mMagenta text on Bright White background%ESC%[0m
+echo 105 %ESC%[40;31mRed text on Black background%ESC%[0m
+echo 106 %ESC%[42;31mRed text on Green background%ESC%[0m 
+echo 107 %ESC%[43;31mRed text on Yellow background%ESC%[0m
+echo 108 %ESC%[44;31mRed text on Blue background%ESC%[0m
+echo 109 %ESC%[45;31mRed text on Magenta background%ESC%[0m 
+echo 110 %ESC%[46;31mRed text on Cyan background%ESC%[0m
+echo 111 %ESC%[47;31mRed text on White background%ESC%[0m
+echo 112 %ESC%[100;31mRed text on Grey background%ESC%[0m
+echo 113 %ESC%[101;31mRed text on Light Red background%ESC%[0m 
+echo 114 %ESC%[102;31mRed text on Light Green background%ESC%[0m 
+echo 115 %ESC%[103;31mRed text on Light Yellow background%ESC%[0m
+echo 116 %ESC%[104;31mRed text on Light Blue background%ESC%[0m 
+echo 117 %ESC%[105;31mRed text on Light Magenta background%ESC%[0m
+echo 118 %ESC%[106;31mRed text on Light Cyan background%ESC%[0m
+echo 119 %ESC%[107;31mRed text on Bright White background%ESC%[0m
+echo.
+echo %ESC%%colorBorder5%---------------------------------------------------------------------------------------------------------------------------------------%colorReset%
+echo Press B to go back in the color menu..
+echo Press F to go forward in the color Menu..
+echo Press C to choose your color..
+set /p UserInput=Do you want to back or forward in the color menu:
+if /i "%UserInput%" == "" goto ColorMenu4
+if /i %UserInput% == B goto ColorMenu3
+if /i %UserInput% == F goto ColorMenu5
+if /i %UserInput% == C goto ChooseColor
+goto ColorMenu4
+
+:ColorMenu5
+cls
+echo 120 %ESC%[40;90mGrey text on Black background%ESC%[0m
+echo 121 %ESC%[41;90mGrey text on Red background%ESC%[0m 
+echo 122 %ESC%[42;90mGrey text on Green background%ESC%[0m 
+echo 123 %ESC%[43;90mGrey text on Yellow background%ESC%[0m
+echo 124 %ESC%[44;90mGrey text on Blue background%ESC%[0m 
+echo 125 %ESC%[45;90mGrey text on Magenta background%ESC%[0m
+echo 126 %ESC%[46;90mGrey text on Cyan background%ESC%[0m
+echo 127 %ESC%[47;90mGrey text on White background%ESC%[0m
+echo 128 %ESC%[101;90mGrey text on Light Red background%ESC%[0m 
+echo 129 %ESC%[102;90mGrey text on Light Green background%ESC%[0m 
+echo 130 %ESC%[103;90mGrey text on Light Yellow background%ESC%[0m
+echo 131 %ESC%[104;90mGrey text on Light Blue background%ESC%[0m 
+echo 132 %ESC%[105;90mGrey text on Light Magenta background%ESC%[0m
+echo 133 %ESC%[106;90mGrey text on Light Cyan background%ESC%[0m
+echo 134 %ESC%[107;90mGrey text on Bright White background%ESC%[0m
+echo 135 %ESC%[40;97mBright White text on Black background%ESC%[0m
+echo 136 %ESC%[41;97mBright White text on Red background%ESC%[0m 
+echo 137 %ESC%[42;97mBright White text on Green background%ESC%[0m 
+echo 138 %ESC%[43;97mBright White text on Yellow background%ESC%[0m
+echo 139 %ESC%[44;97mBright White text on Blue background%ESC%[0m 
+echo 140 %ESC%[45;97mBright White text on Magenta background%ESC%[0m
+echo 141 %ESC%[46;97mBright White text on Cyan background%ESC%[0m
+echo 142 %ESC%[47;97mBright White text on White background%ESC%[0m
+echo 143 %ESC%[100;97mBright White text on Grey background%ESC%[0m
+echo 144 %ESC%[101;97mBright White text on Light Red background%ESC%[0m 
+echo 145 %ESC%[102;97mBright White text on Light Green background%ESC%[0m
+echo 146 %ESC%[103;97mBright White text on Light Yellow background%ESC%[0m 
+echo 147 %ESC%[104;97mBright White text on Light Blue background%ESC%[0m
+echo 148 %ESC%[105;97mBright White text on Light Magenta background%ESC%[0m
+echo 149 %ESC%[106;97mBright White text on Light Cyan background%ESC%[0m
+echo.
+echo %ESC%%colorBorder5%---------------------------------------------------------------------------------------------------------------------------------------%colorReset%
+echo Press B to go back in the color menu..
+echo Press F to go forward in the color Menu..
+echo Press C to choose your color..
+set /p UserInput=Do you want to back or forward in the color menu:
+if /i "%UserInput%" == "" goto ColorMenu5
+if /i %UserInput% == B goto ColorMenu4
+if /i %UserInput% == F goto ColorMenu6
+if /i %UserInput% == C goto ChooseColor
+goto ColorMenu5
+
+:ColorMenu6
+cls
+echo 150 %ESC%[40;93mLight Yellow text on Black background%ESC%[0m
+echo 151 %ESC%[41;93mLight Yellow text on Red background%ESC%[0m 
+echo 152 %ESC%[42;93mLight Yellow text on Green background%ESC%[0m 
+echo 153 %ESC%[43;93mLight Yellow text on Yellow background%ESC%[0m
+echo 154 %ESC%[44;93mLight Yellow text on Blue background%ESC%[0m 
+echo 155 %ESC%[45;93mLight Yellow text on Magenta background%ESC%[0m
+echo 156 %ESC%[46;93mLight Yellow text on Cyan background%ESC%[0m
+echo 157 %ESC%[47;93mLight Yellow text on White background%ESC%[0m
+echo 158 %ESC%[100;93mLight Yellow text on Grey background%ESC%[0m
+echo 159 %ESC%[101;93mLight Yellow text on Light Red background%ESC%[0m 
+echo 160 %ESC%[102;93mLight Yellow text on Light Green background%ESC%[0m
+echo 161 %ESC%[104;93mLight Yellow text on Light Blue background%ESC%[0m 
+echo 162 %ESC%[105;93mLight Yellow text on Light Magenta background%ESC%[0m
+echo 163 %ESC%[106;93mLight Yellow text on Light Cyan background%ESC%[0m
+echo 164 %ESC%[107;93mLight Yellow text on Bright White background%ESC%[0m
+echo 165 %ESC%[40;92mLight Green text on Black background%ESC%[0m
+echo 166 %ESC%[41;92mLight Green text on Red background%ESC%[0m 
+echo 167 %ESC%[42;92mLight Green text on Green background%ESC%[0m 
+echo 168 %ESC%[43;92mLight Green text on Yellow background%ESC%[0m
+echo 169 %ESC%[44;92mLight Green text on Blue background%ESC%[0m 
+echo 170 %ESC%[45;92mLight Green text on Magenta background%ESC%[0m
+echo 171 %ESC%[46;92mLight Green text on Cyan background%ESC%[0m
+echo 172 %ESC%[47;92mLight Green text on White background%ESC%[0m
+echo 173 %ESC%[100;92mLight Green text on Grey background%ESC%[0m
+echo 174 %ESC%[101;92mLight Green text on Light Red background%ESC%[0m 
+echo 175 %ESC%[103;92mLight Green text on Light Yellow background%ESC%[0m 
+echo 176 %ESC%[104;92mLight Green text on Light Blue background%ESC%[0m
+echo 177 %ESC%[105;92mLight Green text on Light Magenta background%ESC%[0m
+echo 178 %ESC%[106;92mLight Green text on Light Cyan background%ESC%[0m
+echo 179 %ESC%[107;92mLight Green text on Bright White background%ESC%[0m 
+echo.
+echo %ESC%%colorBorder5%---------------------------------------------------------------------------------------------------------------------------------------%colorReset%
+echo Press B to go back in the color menu..
+echo Press F to go forward in the color Menu..
+echo Press C to choose your color..
+set /p UserInput=Do you want to back or forward in the color menu:
+if /i "%UserInput%" == "" goto ColorMenu6
+if /i %UserInput% == B goto ColorMenu5
+if /i %UserInput% == F goto ColorMenu7
+if /i %UserInput% == C goto ChooseColor
+goto ColorMenu6
+
+:ColorMenu7
+cls
+echo 180 %ESC%[40;96mLight Cyan text on Black background%ESC%[0m
+echo 181 %ESC%[41;96mLight Cyan text on Red background%ESC%[0m 
+echo 182 %ESC%[42;96mLight Cyan text on Green background%ESC%[0m 
+echo 183 %ESC%[43;96mLight Cyan text on Yellow background%ESC%[0m
+echo 184 %ESC%[44;96mLight Cyan text on Blue background%ESC%[0m 
+echo 185 %ESC%[45;96mLight Cyan text on Magenta background%ESC%[0m
+echo 186 %ESC%[46;96mLight Cyan text on Cyan background%ESC%[0m
+echo 187 %ESC%[47;96mLight Cyan text on White background%ESC%[0m
+echo 188 %ESC%[100;96mLight Cyan text on Grey background%ESC%[0m
+echo 189 %ESC%[101;96mLight Cyan text on Light Red background%ESC%[0m 
+echo 190 %ESC%[102;96mLight Cyan text on Light Green background%ESC%[0m
+echo 191 %ESC%[103;96mLight Cyan text on Light Yellow background%ESC%[0m
+echo 192 %ESC%[104;96mLight Cyan text on Light Blue background%ESC%[0m
+echo 193 %ESC%[105;96mLight Cyan text on Light Magenta background%ESC%[0m
+echo 194 %ESC%[107;96mLight Cyan text on Bright White background%ESC%[0m
+echo 195 %ESC%[40;94mLight Blue text on Black background%ESC%[0m
+echo 196 %ESC%[41;94mLight Blue text on Red background%ESC%[0m 
+echo 197 %ESC%[42;94mLight Blue text on Green background%ESC%[0m 
+echo 198 %ESC%[43;94mLight Blue text on Yellow background%ESC%[0m
+echo 199 %ESC%[44;94mLight Blue text on Blue background%ESC%[0m 
+echo 200 %ESC%[45;94mLight Blue text on Magenta background%ESC%[0m
+echo 201 %ESC%[46;94mLight Blue text on Cyan background%ESC%[0m
+echo 202 %ESC%[47;94mLight Blue text on White background%ESC%[0m
+echo 203 %ESC%[100;94mLight Blue text on Grey background%ESC%[0m
+echo 204 %ESC%[101;94mLight Blue text on Light Red background%ESC%[0m 
+echo 205 %ESC%[102;94mLight Blue text on Light Green background%ESC%[0m 
+echo 206 %ESC%[103;94mLight Blue text on Light Yellow background%ESC%[0m
+echo 207 %ESC%[105;94mLight Blue text on Light Magenta background%ESC%[0m 
+echo 208 %ESC%[106;94mLight Blue text on Light Cyan background%ESC%[0m
+echo 209 %ESC%[107;94mLight Blue text on Bright White background%ESC%[0m
+echo.
+echo %ESC%%colorBorder5%---------------------------------------------------------------------------------------------------------------------------------------%colorReset%
+echo Press B to go back in the color menu..
+echo Press F to go forward in the color Menu..
+echo Press C to choose your color..
+set /p UserInput=Do you want to back or forward in the color menu:
+if /i "%UserInput%" == "" goto ColorMenu7
+if /i %UserInput% == B goto ColorMenu6
+if /i %UserInput% == F goto ColorMenu8
+if /i %UserInput% == C goto ChooseColor
+goto ColorMenu7
+
+:ColorMenu8
+cls
+echo 210 %ESC%[40;95mLight Magenta text on Black background%ESC%[0m
+echo 211 %ESC%[41;95mLight Magenta text on Red background%ESC%[0m 
+echo 212 %ESC%[42;95mLight Magenta text on Green background%ESC%[0m 
+echo 213 %ESC%[43;95mLight Magenta text on Yellow background%ESC%[0m
+echo 214 %ESC%[44;95mLight Magenta text on Blue background%ESC%[0m 
+echo 215 %ESC%[45;95mLight Magenta text on Magenta background%ESC%[0m
+echo 216 %ESC%[46;95mLight Magenta text on Cyan background%ESC%[0m
+echo 217 %ESC%[47;95mLight Magenta text on White background%ESC%[0m
+echo 218 %ESC%[100;95mLight Magenta text on Grey background%ESC%[0m
+echo 219 %ESC%[101;95mLight Magenta text on Light Red background%ESC%[0m 
+echo 220 %ESC%[102;95mLight Magenta text on Light Green background%ESC%[0m
+echo 221 %ESC%[103;95mLight Magenta text on Light Yellow background%ESC%[0m 
+echo 222 %ESC%[104;95mLight Magenta text on Light Blue background%ESC%[0m
+echo 223 %ESC%[106;95mLight Magenta text on Light Cyan background%ESC%[0m
+echo 224 %ESC%[107;95mLight Magenta text on Bright White background%ESC%[0m
+echo 225 %ESC%[40;91mLight Red text on Black background%ESC%[0m
+echo 226 %ESC%[41;91mLight Red text on Red background%ESC%[0m 
+echo 227 %ESC%[42;91mLight Red text on Green background%ESC%[0m 
+echo 228 %ESC%[43;91mLight Red text on Yellow background%ESC%[0m
+echo 229 %ESC%[44;91mLight Red text on Blue background%ESC%[0m 
+echo 230 %ESC%[45;91mLight Red text on Magenta background%ESC%[0m
+echo 231 %ESC%[46;91mLight Red text on Cyan background%ESC%[0m
+echo 232 %ESC%[47;91mLight Red text on White background%ESC%[0m
+echo 233 %ESC%[100;91mLight Red text on Grey background%ESC%[0m
+echo 234 %ESC%[102;91mLight Red text on Light Green background%ESC%[0m 
+echo 235 %ESC%[103;91mLight Red text on Light Yellow background%ESC%[0m
+echo 236 %ESC%[104;91mLight Red text on Light Blue background%ESC%[0m
+echo 237 %ESC%[105;91mLight Red text on Light Magenta background%ESC%[0m 
+echo 238 %ESC%[106;91mLight Red text on Light Cyan background%ESC%[0m
+echo 239 %ESC%[107;91mLight Red text on Bright White background%ESC%[0m
+echo.
+echo %ESC%%colorBorder5%---------------------------------------------------------------------------------------------------------------------------------------%colorReset%
+echo Press B to go back in the color menu..
+echo Press F to go forward in the color Menu..
+echo Press C to choose your color..
+set /p UserInput=Do you want to back or forward in the color menu:
+if /i "%UserInput%" == "" goto ColorMenu8
+if /i %UserInput% == B goto ColorMenu7
+if /i %UserInput% == F goto Message2
+if /i %UserInput% == C goto ChooseColor
+goto ColorMenu8
+
+:ChooseColor
+echo %ESC%%colorBorder5%---------------------------------------------------------------------------------------------------------------------------------------%colorReset%
+echo.
+set /p ChoiceColor=Enter the color combination number: 
+echo The number is..  %ChoiceColor%
+pause
+if "%ChoiceColor%"=="0" set "colorCombination=[41;30m" & set "displayText=Black text on Red background" 
+if "%ChoiceColor%"=="1" set "colorCombination=[42;30m" & set "displayText=Black text on Green background"
+if "%ChoiceColor%"=="2" set "colorCombination=[43;30m" & set "displayText=Black text on Yellow background"
+if "%ChoiceColor%"=="3" set "colorCombination=[44;30m" & set "displayText=Black text on Blue background"
+if "%ChoiceColor%"=="4" set "colorCombination=[45;30m" & set "displayText=Black text on Magenta background"
+if "%ChoiceColor%"=="5" set "colorCombination=[46;30m" & set "displayText=Black text on Cyan background"
+if "%ChoiceColor%"=="6" set "colorCombination=[47;30m" & set "displayText=Black text on White background"
+if "%ChoiceColor%"=="7" set "colorCombination=[100;30m" & set "displayText=Black text on Grey background"
+if "%ChoiceColor%"=="8" set "colorCombination=[101;30m" & set "displayText=Black text on Light Red background"
+if "%ChoiceColor%"=="9" set "colorCombination=[102;30m" & set "displayText=Black text on Light Green background"
+if "%ChoiceColor%"=="10" set "colorCombination=[103;30m" & set "displayText=Black text on Light Yellow background"
+if "%ChoiceColor%"=="11" set "colorCombination=[104;30m" & set "displayText=Black text on Light Blue background"
+if "%ChoiceColor%"=="12" set "colorCombination=[105;30m" & set "displayText=Black text on Light Magenta background"
+if "%ChoiceColor%"=="13" set "colorCombination=[106;30m" & set "displayText=Black text on Light Cyan background"
+if "%ChoiceColor%"=="14" set "colorCombination=[107;30m" & set "displayText=Black text on Bright White background"
+if "%ChoiceColor%"=="15" set "colorCombination=[40;37m" & set "displayText=White text on Black background"
+if "%ChoiceColor%"=="16" set "colorCombination=[41;37m" & set "displayText=White text on Red background"
+if "%ChoiceColor%"=="17" set "colorCombination=[42;37m" & set "displayText=White text on Green background"
+if "%ChoiceColor%"=="18" set "colorCombination=[43;37m" & set "displayText=White text on Yellow background"
+if "%ChoiceColor%"=="19" set "colorCombination=[44;37m" & set "displayText=White text on Blue background"
+if "%ChoiceColor%"=="20" set "colorCombination=[45;37m" & set "displayText=White text on Magenta background"
+if "%ChoiceColor%"=="21" set "colorCombination=[46;37m" & set "displayText=White text on Cyan background"
+if "%ChoiceColor%"=="22" set "colorCombination=[100;37m" & set "displayText=White text on Grey background"
+if "%ChoiceColor%"=="23" set "colorCombination=[101;37m" & set "displayText=White text on Light Red background"
+if "%ChoiceColor%"=="24" set "colorCombination=[102;37m" & set "displayText=White text on Light Green background"
+if "%ChoiceColor%"=="25" set "colorCombination=[103;37m" & set "displayText=White text on Light Yellow background"
+if "%ChoiceColor%"=="26" set "colorCombination=[104;37m" & set "displayText=White text on Light Blue background"
+if "%ChoiceColor%"=="27" set "colorCombination=[105;37m" & set "displayText=White text on Light Magenta background"
+if "%ChoiceColor%"=="28" set "colorCombination=[106;37m" & set "displayText=White text on Light Cyan background"
+if "%ChoiceColor%"=="29" set "colorCombination=[107;37m" & set "displayText=White text on Bright White background"
+if "%ChoiceColor%"=="30" set "colorCombination=[40;33m" & set "displayText=Yellow text on Black background"
+if "%ChoiceColor%"=="31" set "colorCombination=[41;33m" & set "displayText=Yellow text on Red background"
+if "%ChoiceColor%"=="32" set "colorCombination=[42;33m" & set "displayText=Yellow text on Green background"
+if "%ChoiceColor%"=="33" set "colorCombination=[44;33m" & set "displayText=Yellow text on Blue background"
+if "%ChoiceColor%"=="34" set "colorCombination=[45;33m" & set "displayText=Yellow text on Magenta background"
+if "%ChoiceColor%"=="35" set "colorCombination=[46;33m" & set "displayText=Yellow text on Cyan background"
+if "%ChoiceColor%"=="36" set "colorCombination=[47;33m" & set "displayText=Yellow text on White background"
+if "%ChoiceColor%"=="37" set "colorCombination=[100;33m" & set "displayText=Yellow text on Grey background"
+if "%ChoiceColor%"=="38" set "colorCombination=[101;33m" & set "displayText=Yellow text on Light Red background"
+if "%ChoiceColor%"=="39" set "colorCombination=[102;33m" & set "displayText=Yellow text on Light Green background"
+if "%ChoiceColor%"=="40" set "colorCombination=[103;33m" & set "displayText=Yellow text on Light Yellow background"
+if "%ChoiceColor%"=="41" set "colorCombination=[104;33m" & set "displayText=Yellow text on Light Blue background"
+if "%ChoiceColor%"=="42" set "colorCombination=[105;33m" & set "displayText=Yellow text on Light Magenta background"
+if "%ChoiceColor%"=="43" set "colorCombination=[106;33m" & set "displayText=Yellow text on Light Cyan background"
+if "%ChoiceColor%"=="44" set "colorCombination=[107;33m" & set "displayText=Yellow text on Bright White background"
+if "%ChoiceColor%"=="45" set "colorCombination=[40;32m" & set "displayText=Green text on Black background"
+if "%ChoiceColor%"=="46" set "colorCombination=[41;32m" & set "displayText=Green text on Red background"
+if "%ChoiceColor%"=="47" set "colorCombination=[43;32m" & set "displayText=Green text on Yellow background"
+if "%ChoiceColor%"=="48" set "colorCombination=[44;32m" & set "displayText=Green text on Blue background"
+if "%ChoiceColor%"=="49" set "colorCombination=[45;32m" & set "displayText=Green text on Magenta background"
+if "%ChoiceColor%"=="50" set "colorCombination=[46;32m" & set "displayText=Green text on Cyan background"
+if "%ChoiceColor%"=="51" set "colorCombination=[47;32m" & set "displayText=Green text on White background"
+if "%ChoiceColor%"=="52" set "colorCombination=[100;32m" & set "displayText=Green text on Grey background"
+if "%ChoiceColor%"=="53" set "colorCombination=[101;32m" & set "displayText=Green text on Light Red background"
+if "%ChoiceColor%"=="54" set "colorCombination=[102;32m" & set "displayText=Green text on Light Green background"
+if "%ChoiceColor%"=="55" set "colorCombination=[103;32m" & set "displayText=Green text on Light Yellow background"
+if "%ChoiceColor%"=="56" set "colorCombination=[104;32m" & set "displayText=Green text on Light Blue background"
+if "%ChoiceColor%"=="57" set "colorCombination=[105;32m" & set "displayText=Green text on Light Magenta background"
+if "%ChoiceColor%"=="58" set "colorCombination=[106;32m" & set "displayText=Green text on Light Cyan background"
+if "%ChoiceColor%"=="59" set "colorCombination=[107;32m" & set "displayText=Green text on Bright White background"
+if "%ChoiceColor%"=="60" set "colorCombination=[40;36m" & set "displayText=Cyan text on Black background"
+if "%ChoiceColor%"=="61" set "colorCombination=[41;36m" & set "displayText=Cyan text on Red background"
+if "%ChoiceColor%"=="62" set "colorCombination=[42;36m" & set "displayText=Cyan text on Green background"
+if "%ChoiceColor%"=="63" set "colorCombination=[43;36m" & set "displayText=Cyan text on Yellow background"
+if "%ChoiceColor%"=="64" set "colorCombination=[44;36m" & set "displayText=Cyan text on Blue background"
+if "%ChoiceColor%"=="65" set "colorCombination=[45;36m" & set "displayText=Cyan text on Magenta background"
+if "%ChoiceColor%"=="66" set "colorCombination=[47;36m" & set "displayText=Cyan text on White background"
+if "%ChoiceColor%"=="67" set "colorCombination=[100;36m" & set "displayText=Cyan text on Grey background"
+if "%ChoiceColor%"=="68" set "colorCombination=[101;36m" & set "displayText=Cyan text on Light Red background"
+if "%ChoiceColor%"=="69" set "colorCombination=[102;36m" & set "displayText=Cyan text on Light Green background"
+if "%ChoiceColor%"=="70" set "colorCombination=[103;36m" & set "displayText=Cyan text on Light Yellow background"
+if "%ChoiceColor%"=="71" set "colorCombination=[104;36m" & set "displayText=Cyan text on Light Blue background"
+if "%ChoiceColor%"=="72" set "colorCombination=[105;36m" & set "displayText=Cyan text on Light Magenta background"
+if "%ChoiceColor%"=="73" set "colorCombination=[106;36m" & set "displayText=Cyan text on Light Cyan background"
+if "%ChoiceColor%"=="74" set "colorCombination=[107;36m" & set "displayText=Cyan text on Bright White background"
+if "%ChoiceColor%"=="75" set "colorCombination=[40;34m" & set "displayText=Blue text on Black background"
+if "%ChoiceColor%"=="76" set "colorCombination=[41;34m" & set "displayText=Blue text on Red background"
+if "%ChoiceColor%"=="77" set "colorCombination=[42;34m" & set "displayText=Blue text on Green background"
+if "%ChoiceColor%"=="78" set "colorCombination=[43;34m" & set "displayText=Blue text on Yellow background"
+if "%ChoiceColor%"=="79" set "colorCombination=[45;34m" & set "displayText=Blue text on Magenta background"
+if "%ChoiceColor%"=="80" set "colorCombination=[46;34m" & set "displayText=Blue text on Cyan background"
+if "%ChoiceColor%"=="81" set "colorCombination=[47;34m" & set "displayText=Blue text on White background"
+if "%ChoiceColor%"=="82" set "colorCombination=[100;34m" & set "displayText=Blue text on Grey background"
+if "%ChoiceColor%"=="83" set "colorCombination=[101;34m" & set "displayText=Blue text on Light Red background"
+if "%ChoiceColor%"=="84" set "colorCombination=[102;34m" & set "displayText=Blue text on Light Green background"
+if "%ChoiceColor%"=="85" set "colorCombination=[103;34m" & set "displayText=Blue text on Light Yellow background"
+if "%ChoiceColor%"=="86" set "colorCombination=[104;34m" & set "displayText=Blue text on Light Blue background"
+if "%ChoiceColor%"=="87" set "colorCombination=[105;34m" & set "displayText=Blue text on Light Magenta background"
+if "%ChoiceColor%"=="88" set "colorCombination=[106;34m" & set "displayText=Blue text on Light Cyan background"
+if "%ChoiceColor%"=="89" set "colorCombination=[107;34m" & set "displayText=Blue text on Bright White background"
+if "%ChoiceColor%"=="90" set "colorCombination=[40;35m" & set "displayText=Magenta text on Black background"
+if "%ChoiceColor%"=="91" set "colorCombination=[41;35m" & set "displayText=Magenta text on Red background"
+if "%ChoiceColor%"=="92" set "colorCombination=[42;35m" & set "displayText=Magenta text on Green background"
+if "%ChoiceColor%"=="93" set "colorCombination=[43;35m" & set "displayText=Magenta text on Yellow background"
+if "%ChoiceColor%"=="94" set "colorCombination=[44;35m" & set "displayText=Magenta text on Blue background"
+if "%ChoiceColor%"=="95" set "colorCombination=[46;35m" & set "displayText=Magenta text on Cyan background"
+if "%ChoiceColor%"=="96" set "colorCombination=[47;35m" & set "displayText=Magenta text on White background"
+if "%ChoiceColor%"=="97" set "colorCombination=[100;35m" & set "displayText=Magenta text on Grey background"
+if "%ChoiceColor%"=="98" set "colorCombination=[101;35m" & set "displayText=Magenta text on Light Red background"
+if "%ChoiceColor%"=="99" set "colorCombination=[102;35m" & set "displayText=Magenta text on Light Green background"
+if "%ChoiceColor%"=="100" set "colorCombination=[103;35m" & set "displayText=Magenta text on Light Yellow background"
+if "%ChoiceColor%"=="101" set "colorCombination=[104;35m" & set "displayText=Magenta text on Light Blue background"
+if "%ChoiceColor%"=="102" set "colorCombination=[105;35m" & set "displayText=Magenta text on Light Magenta background"
+if "%ChoiceColor%"=="103" set "colorCombination=[106;35m" & set "displayText=Magenta text on Light Cyan background"
+if "%ChoiceColor%"=="104" set "colorCombination=[107;35m" & set "displayText=Magenta text on Bright White background"
+if "%ChoiceColor%"=="105" set "colorCombination=[40;31m" & set "displayText=Red text on Black background"
+if "%ChoiceColor%"=="106" set "colorCombination=[42;31m" & set "displayText=Red text on Green background"
+if "%ChoiceColor%"=="107" set "colorCombination=[43;31m" & set "displayText=Red text on Yellow background"
+if "%ChoiceColor%"=="108" set "colorCombination=[44;31m" & set "displayText=Red text on Blue background"
+if "%ChoiceColor%"=="109" set "colorCombination=[45;31m" & set "displayText=Red text on Magenta background"
+if "%ChoiceColor%"=="110" set "colorCombination=[46;31m" & set "displayText=Red text on Cyan background"
+if "%ChoiceColor%"=="111" set "colorCombination=[47;31m" & set "displayText=Red text on White background"
+if "%ChoiceColor%"=="112" set "colorCombination=[100;31m" & set "displayText=Red text on Grey background"
+if "%ChoiceColor%"=="113" set "colorCombination=[101;31m" & set "displayText=Red text on Light Red background"
+if "%ChoiceColor%"=="114" set "colorCombination=[102;31m" & set "displayText=Red text on Light Green background"
+if "%ChoiceColor%"=="115" set "colorCombination=[103;31m" & set "displayText=Red text on Light Yellow background"
+if "%ChoiceColor%"=="116" set "colorCombination=[104;31m" & set "displayText=Red text on Light Blue background"
+if "%ChoiceColor%"=="117" set "colorCombination=[105;31m" & set "displayText=Red text on Light Magenta background"
+if "%ChoiceColor%"=="118" set "colorCombination=[106;31m" & set "displayText=Red text on Light Cyan background"
+if "%ChoiceColor%"=="119" set "colorCombination=[107;31m" & set "displayText=Red text on Bright White background"
+if "%ChoiceColor%"=="120" set "colorCombination=[40;90m" & set "displayText=Grey text on Black background"
+if "%ChoiceColor%"=="121" set "colorCombination=[41;90m" & set "displayText=Grey text on Red background"
+if "%ChoiceColor%"=="122" set "colorCombination=[42;90m" & set "displayText=Grey text on Green background"
+if "%ChoiceColor%"=="123" set "colorCombination=[43;90m" & set "displayText=Grey text on Yellow background"
+if "%ChoiceColor%"=="124" set "colorCombination=[44;90m" & set "displayText=Grey text on Blue background"
+if "%ChoiceColor%"=="125" set "colorCombination=[45;90m" & set "displayText=Grey text on Magenta background"
+if "%ChoiceColor%"=="126" set "colorCombination=[46;90m" & set "displayText=Grey text on Cyan background"
+if "%ChoiceColor%"=="127" set "colorCombination=[47;90m" & set "displayText=Grey text on White background"
+if "%ChoiceColor%"=="128" set "colorCombination=[101;90m" & set "displayText=Grey text on Light Red background"
+if "%ChoiceColor%"=="129" set "colorCombination=[102;90m" & set "displayText=Grey text on Light Green background"
+if "%ChoiceColor%"=="130" set "colorCombination=[103;90m" & set "displayText=Grey text on Light Yellow background"
+if "%ChoiceColor%"=="131" set "colorCombination=[104;90m" & set "displayText=Grey text on Light Blue background"
+if "%ChoiceColor%"=="132" set "colorCombination=[105;90m" & set "displayText=Grey text on Light Magenta background"
+if "%ChoiceColor%"=="133" set "colorCombination=[106;90m" & set "displayText=Grey text on Light Cyan background"
+if "%ChoiceColor%"=="134" set "colorCombination=[107;90m" & set "displayText=Grey text on Bright White background"
+if "%ChoiceColor%"=="135" set "colorCombination=[40;97m" & set "displayText=Bright White text on Black background"
+if "%ChoiceColor%"=="136" set "colorCombination=[41;97m" & set "displayText=Bright White text on Red background"
+if "%ChoiceColor%"=="137" set "colorCombination=[42;97m" & set "displayText=Bright White text on Green background"
+if "%ChoiceColor%"=="138" set "colorCombination=[43;97m" & set "displayText=Bright White text on Yellow background"
+if "%ChoiceColor%"=="139" set "colorCombination=[44;97m" & set "displayText=Bright White text on Blue background"
+if "%ChoiceColor%"=="140" set "colorCombination=[45;97m" & set "displayText=Bright White text on Magenta background"
+if "%ChoiceColor%"=="141" set "colorCombination=[46;97m" & set "displayText=Bright White text on Cyan background"
+if "%ChoiceColor%"=="142" set "colorCombination=[47;97m" & set "displayText=Bright White text on White background"
+if "%ChoiceColor%"=="143" set "colorCombination=[100;97m" & set "displayText=Bright White text on Grey background"
+if "%ChoiceColor%"=="144" set "colorCombination=[101;97m" & set "displayText=Bright White text on Light Red background"
+if "%ChoiceColor%"=="145" set "colorCombination=[102;97m" & set "displayText=Bright White text on Light Green background"
+if "%ChoiceColor%"=="146" set "colorCombination=[103;97m" & set "displayText=Bright White text on Light Yellow background"
+if "%ChoiceColor%"=="147" set "colorCombination=[104;97m" & set "displayText=Bright White text on Light Blue background"
+if "%ChoiceColor%"=="148" set "colorCombination=[105;97m" & set "displayText=Bright White text on Light Magenta background"
+if "%ChoiceColor%"=="149" set "colorCombination=[106;97m" & set "displayText=Bright White text on Light Cyan background"
+if "%ChoiceColor%"=="150" set "colorCombination=[40;93m" & set "displayText=Light Yellow text on Black background"
+if "%ChoiceColor%"=="151" set "colorCombination=[41;93m" & set "displayText=Light Yellow text on Red background"
+if "%ChoiceColor%"=="152" set "colorCombination=[42;93m" & set "displayText=Light Yellow text on Green background"
+if "%ChoiceColor%"=="153" set "colorCombination=[43;93m" & set "displayText=Light Yellow text on Yellow background"
+if "%ChoiceColor%"=="154" set "colorCombination=[44;93m" & set "displayText=Light Yellow text on Blue background"
+if "%ChoiceColor%"=="155" set "colorCombination=[45;93m" & set "displayText=Light Yellow text on Magenta background"
+if "%ChoiceColor%"=="156" set "colorCombination=[46;93m" & set "displayText=Light Yellow text on Cyan background"
+if "%ChoiceColor%"=="157" set "colorCombination=[47;93m" & set "displayText=Light Yellow text on White background"
+if "%ChoiceColor%"=="158" set "colorCombination=[100;93m" & set "displayText=Light Yellow text on Grey background"
+if "%ChoiceColor%"=="159" set "colorCombination=[101;93m" & set "displayText=Light Yellow text on Light Red background"
+if "%ChoiceColor%"=="160" set "colorCombination=[102;93m" & set "displayText=Light Yellow text on Light Green background"
+if "%ChoiceColor%"=="161" set "colorCombination=[104;93m" & set "displayText=Light Yellow text on Light Blue background"
+if "%ChoiceColor%"=="162" set "colorCombination=[105;93m" & set "displayText=Light Yellow text on Light Magenta background"
+if "%ChoiceColor%"=="163" set "colorCombination=[106;93m" & set "displayText=Light Yellow text on Light Cyan background"
+if "%ChoiceColor%"=="164" set "colorCombination=[107;93m" & set "displayText=Light Yellow text on Bright White background"
+if "%ChoiceColor%"=="165" set "colorCombination=[40;92m" & set "displayText=Light Green text on Black background"
+if "%ChoiceColor%"=="166" set "colorCombination=[41;92m" & set "displayText=Light Green text on Red background"
+if "%ChoiceColor%"=="167" set "colorCombination=[42;92m" & set "displayText=Light Green text on Green background"
+if "%ChoiceColor%"=="168" set "colorCombination=[43;92m" & set "displayText=Light Green text on Yellow background"
+if "%ChoiceColor%"=="169" set "colorCombination=[44;92m" & set "displayText=Light Green text on Blue background"
+if "%ChoiceColor%"=="170" set "colorCombination=[45;92m" & set "displayText=Light Green text on Magenta background"
+if "%ChoiceColor%"=="171" set "colorCombination=[46;92m" & set "displayText=Light Green text on Cyan background"
+if "%ChoiceColor%"=="172" set "colorCombination=[47;92m" & set "displayText=Light Green text on White background"
+if "%ChoiceColor%"=="173" set "colorCombination=[100;92m" & set "displayText=Light Green text on Grey background"
+if "%ChoiceColor%"=="174" set "colorCombination=[101;92m" & set "displayText=Light Green text on Light Red background"
+if "%ChoiceColor%"=="175" set "colorCombination=[103;92m" & set "displayText=Light Green text on Light Yellow background"
+if "%ChoiceColor%"=="176" set "colorCombination=[104;92m" & set "displayText=Light Green text on Light Blue background"
+if "%ChoiceColor%"=="177" set "colorCombination=[105;92m" & set "displayText=Light Green text on Light Magenta background"
+if "%ChoiceColor%"=="178" set "colorCombination=[106;92m" & set "displayText=Light Green text on Light Cyan background"
+if "%ChoiceColor%"=="179" set "colorCombination=[107;92m" & set "displayText=Light Green text on Bright White background"
+if "%ChoiceColor%"=="180" set "colorCombination=[40;96m" & set "displayText=Light Cyan text on Black background"
+if "%ChoiceColor%"=="181" set "colorCombination=[41;96m" & set "displayText=Light Cyan text on Red background"
+if "%ChoiceColor%"=="182" set "colorCombination=[42;96m" & set "displayText=Light Cyan text on Green background"
+if "%ChoiceColor%"=="183" set "colorCombination=[43;96m" & set "displayText=Light Cyan text on Yellow background"
+if "%ChoiceColor%"=="184" set "colorCombination=[44;96m" & set "displayText=Light Cyan text on Blue background"
+if "%ChoiceColor%"=="185" set "colorCombination=[45;96m" & set "displayText=Light Cyan text on Magenta background"
+if "%ChoiceColor%"=="186" set "colorCombination=[46;96m" & set "displayText=Light Cyan text on Cyan background"
+if "%ChoiceColor%"=="187" set "colorCombination=[47;96m" & set "displayText=Light Cyan text on White background"
+if "%ChoiceColor%"=="188" set "colorCombination=[100;96m" & set "displayText=Light Cyan text on Grey background"
+if "%ChoiceColor%"=="189" set "colorCombination=[101;96m" & set "displayText=Light Cyan text on Light Red background"
+if "%ChoiceColor%"=="190" set "colorCombination=[102;96m" & set "displayText=Light Cyan text on Light Green background"
+if "%ChoiceColor%"=="191" set "colorCombination=[103;96m" & set "displayText=Light Cyan text on Light Yellow background"
+if "%ChoiceColor%"=="192" set "colorCombination=[104;96m" & set "displayText=Light Cyan text on Light Blue background"
+if "%ChoiceColor%"=="193" set "colorCombination=[105;96m" & set "displayText=Light Cyan text on Light Magenta background"
+if "%ChoiceColor%"=="194" set "colorCombination=[107;96m" & set "displayText=Light Cyan text on Bright White background"
+if "%ChoiceColor%"=="195" set "colorCombination=[40;94m" & set "displayText=Light Blue text on Black background"
+if "%ChoiceColor%"=="196" set "colorCombination=[41;94m" & set "displayText=Light Blue text on Red background"
+if "%ChoiceColor%"=="197" set "colorCombination=[42;94m" & set "displayText=Light Blue text on Green background"
+if "%ChoiceColor%"=="198" set "colorCombination=[43;94m" & set "displayText=Light Blue text on Yellow background"
+if "%ChoiceColor%"=="199" set "colorCombination=[44;94m" & set "displayText=Light Blue text on Blue background"
+if "%ChoiceColor%"=="200" set "colorCombination=[45;94m" & set "displayText=Light Blue text on Magenta background"
+if "%ChoiceColor%"=="201" set "colorCombination=[46;94m" & set "displayText=Light Blue text on Cyan background"
+if "%ChoiceColor%"=="202" set "colorCombination=[47;94m" & set "displayText=Light Blue text on White background"
+if "%ChoiceColor%"=="203" set "colorCombination=[100;94m" & set "displayText=Light Blue text on Grey background"
+if "%ChoiceColor%"=="204" set "colorCombination=[101;94m" & set "displayText=Light Blue text on Light Red background"
+if "%ChoiceColor%"=="205" set "colorCombination=[102;94m" & set "displayText=Light Blue text on Light Green background"
+if "%ChoiceColor%"=="206" set "colorCombination=[103;94m" & set "displayText=Light Blue text on Light Yellow background"
+if "%ChoiceColor%"=="207" set "colorCombination=[105;94m" & set "displayText=Light Blue text on Light Magenta background"
+if "%ChoiceColor%"=="208" set "colorCombination=[106;94m" & set "displayText=Light Blue text on Light Cyan background"
+if "%ChoiceColor%"=="209" set "colorCombination=[107;94m" & set "displayText=Light Blue text on Bright White background"
+if "%ChoiceColor%"=="210" set "colorCombination=[40;95m" & set "displayText=Light Magenta text on Black background"
+if "%ChoiceColor%"=="211" set "colorCombination=[41;95m" & set "displayText=Light Magenta text on Red background"
+if "%ChoiceColor%"=="212" set "colorCombination=[42;95m" & set "displayText=Light Magenta text on Green background"
+if "%ChoiceColor%"=="213" set "colorCombination=[43;95m" & set "displayText=Light Magenta text on Yellow background"
+if "%ChoiceColor%"=="214" set "colorCombination=[44;95m" & set "displayText=Light Magenta text on Blue background"
+if "%ChoiceColor%"=="215" set "colorCombination=[45;95m" & set "displayText=Light Magenta text on Magenta background"
+if "%ChoiceColor%"=="216" set "colorCombination=[46;95m" & set "displayText=Light Magenta text on Cyan background"
+if "%ChoiceColor%"=="217" set "colorCombination=[47;95m" & set "displayText=Light Magenta text on White background"
+if "%ChoiceColor%"=="218" set "colorCombination=[100;95m" & set "displayText=Light Magenta text on Grey background"
+if "%ChoiceColor%"=="219" set "colorCombination=[101;95m" & set "displayText=Light Magenta text on Light Red background"
+if "%ChoiceColor%"=="220" set "colorCombination=[102;95m" & set "displayText=Light Magenta text on Light Green background"
+if "%ChoiceColor%"=="221" set "colorCombination=[103;95m" & set "displayText=Light Magenta text on Light Yellow background"
+if "%ChoiceColor%"=="222" set "colorCombination=[104;95m" & set "displayText=Light Magenta text on Light Blue background"
+if "%ChoiceColor%"=="223" set "colorCombination=[106;95m" & set "displayText=Light Magenta text on Light Cyan background"
+if "%ChoiceColor%"=="224" set "colorCombination=[107;95m" & set "displayText=Light Magenta text on Bright White background"
+if "%ChoiceColor%"=="225" set "colorCombination=[40;91m" & set "displayText=Light Red text on Black background"
+if "%ChoiceColor%"=="226" set "colorCombination=[41;91m" & set "displayText=Light Red text on Red background"
+if "%ChoiceColor%"=="227" set "colorCombination=[42;91m" & set "displayText=Light Red text on Green background"
+if "%ChoiceColor%"=="228" set "colorCombination=[43;91m" & set "displayText=Light Red text on Yellow background"
+if "%ChoiceColor%"=="229" set "colorCombination=[44;91m" & set "displayText=Light Red text on Blue background"
+if "%ChoiceColor%"=="230" set "colorCombination=[45;91m" & set "displayText=Light Red text on Magenta background"
+if "%ChoiceColor%"=="231" set "colorCombination=[46;91m" & set "displayText=Light Red text on Cyan background"
+if "%ChoiceColor%"=="232" set "colorCombination=[47;91m" & set "displayText=Light Red text on White background"
+if "%ChoiceColor%"=="233" set "colorCombination=[100;91m" & set "displayText=Light Red text on Grey background"
+if "%ChoiceColor%"=="234" set "colorCombination=[102;91m" & set "displayText=Light Red text on Light Green background"
+if "%ChoiceColor%"=="235" set "colorCombination=[103;91m" & set "displayText=Light Red text on Light Yellow background"
+if "%ChoiceColor%"=="236" set "colorCombination=[104;91m" & set "displayText=Light Red text on Light Blue background"
+if "%ChoiceColor%"=="237" set "colorCombination=[105;91m" & set "displayText=Light Red text on Light Magenta background"
+if "%ChoiceColor%"=="238" set "colorCombination=[106;91m" & set "displayText=Light Red text on Light Cyan background"
+if "%ChoiceColor%"=="239" set "colorCombination=[107;91m" & set "displayText=Light Red text on Bright White background"
+echo.
+goto WordColor
+
+:WordColor
+cls
+set "CompleteCode=%ESC%%colorCombination% %UserInput1% %colorReset%"
+echo.
+echo.
+echo %ESC%[40;92mO============================================================================================================================================O%colorReset%
+echo.
+echo.
+echo                                       The Program has used ANSI escape codes to color your word..
+echo.
+echo.
+echo                                           %ESC%%colorCombination% %UserInput1% %colorReset%
+echo.
+echo.
+echo %ESC%[40;96mOooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooO%colorReset%
+echo.
+echo.
+echo Press R^) To Redirect your chosen word and color code to a text file for you to use in batch script.
+echo Press M^) To Start the Color Menu from start and to continue with setting a word and color.
+echo Press E^) To Exit the Program
+echo.
+set /p "Answer2=Enter your choice: "
+if /i "%Answer2%" == "" goto WordColor
+if /i %Answer2% == R goto Redirect1
+if /i %Answer2% == M goto Menu1
+if /i %Answer2% == E goto Exit
+goto WordColor
+
+:Redirect1
+echo %ESC%[40;91mOo==========================================================================================================================================oO%colorReset%
+echo.
+echo.
+set /p "Redirect=Do you want to redirect you complete code with commands to a text file^? ^(Yes/No^): "
+if /i "%Redirect%" == "" goto Redirect1
+if /i %Redirect% == No goto WordColor
+if /i %Redirect% == Yes goto Redirect2
+goto Redirect1
+
+:Redirect2
+echo.
+echo %ESC%[40;91mOo==========================================================================================================================================oO%colorReset%
+echo.
+echo %CompleteCode% is the code...
+(
+    setlocal enabledelayedexpansion
+	set com1="for ^/F "
+	set com2="^"tokens^=^1^,^2 delims^=^#^" "
+	set com3="%%%a in "
+	set com4="^('"prompt ^#^$H^#^$E^# ^& echo on ^& for %%%b in ^(^1^) do rem"'^) "
+	set com5="do ^( "
+	set com6="set ESC^="
+	set com7="%%%b"
+	echo ----------------------------------------------------------------------------------- >> "%USERPROFILE%\Desktop\FixunaExe1\FolderColorOutput\OutputColorCodes.txt"
+	echo. >> "%USERPROFILE%\Desktop\FixunaExe1\FolderColorOutput\OutputColorCodes.txt"
+    echo %DATE% >> "%USERPROFILE%\Desktop\FixunaExe1\FolderColorOutput\OutputColorCodes.txt"
+	echo %TIME% >> "%USERPROFILE%\Desktop\FixunaExe1\FolderColorOutput\OutputColorCodes.txt"
+	echo ^<ESC^>!colorCombination!!UserInput1!^<ESC^>[0m >> "%USERPROFILE%\Desktop\FixunaExe1\FolderColorOutput\OutputColorCodes.txt"
+	echo This is !displayText! >> "%USERPROFILE%\Desktop\FixunaExe1\FolderColorOutput\OutputColorCodes.txt"
+	echo. >> "%USERPROFILE%\Desktop\FixunaExe1\FolderColorOutput\OutputColorCodes.txt"
+	echo Call ^:setESC and Use the following code block in your Batch Script when you are having trouble with the ANSI ESC character. >> "%USERPROFILE%\Desktop\FixunaExe1\FolderColorOutput\OutputColorCodes.txt"
+	echo And replace the ^<ESC^> for %% ESC %% without the spaces between percent characters around ESC in your own Batch Script^! >> "%USERPROFILE%\Desktop\FixunaExe1\FolderColorOutput\OutputColorCodes.txt"
+	echo. >> "%USERPROFILE%\Desktop\FixunaExe1\FolderColorOutput\OutputColorCodes.txt"
+	echo ----------------------------------------------------------------------------------- >> "%USERPROFILE%\Desktop\FixunaExe1\FolderColorOutput\OutputColorCodes.txt"
+    endlocal
+)
+echo.
+echo The Complete Code has been redirected to "OutputColorCodes.txt".
+echo.
+echo.
+echo Continue to next option.. 
+echo.
+echo.
+echo Press M^) To Start the Color Menu from start and to continue with setting a word and color.
+echo Press E^) To Exit the Program
+echo.
+set /p "Answer2=Enter your choice: "
+if /i "%Answer2%" == "" goto Redirect2
+if /i %Answer2% == M goto Menu1
+if /i %Answer2% == E goto Exit 
+goto Redirect2
+
+:Message1
+echo %ESC%%colorBorder4%Ooo---------------------------------------------------------------------------------------------------------------------------------ooO%colorReset%
+echo.
+echo                             %ESC%[45;33moYou can not go further Back.. please ENTER a valid option..%colorReset%
+echo.
+pause
+goto ColorMenu1
+
+:Message2
+echo %ESC%%colorBorder4%Ooo---------------------------------------------------------------------------------------------------------------------------------ooO%colorReset%
+echo.
+echo                             %ESC%[45;33moYou can not go further Forward.. please ENTER a valid option..%colorReset%
+echo.
+pause
+goto ColorMenu8
+
+:setESC
+for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do rem"') do (
+  set ESC=%%b
+  exit /B 0
+)
+
+exit /B 0
+
+:Exit
+cls
+echo.
+echo.
+echo.
+echo %ESC%[101;93mOo==========================================================================================================================================oO%colorReset%
+echo.
+echo.
+echo                            %ESC%[102;93mThank you for using this program %UserName%^! Hope to see you soon^! Bye bye...%colorReset%
+echo.
+echo.
+echo %ESC%[101;93mOo==========================================================================================================================================oO%colorReset%
+echo.
+echo.
+echo.
+timeout /t 3 >nul & exit
